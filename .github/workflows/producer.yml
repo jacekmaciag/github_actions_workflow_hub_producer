@@ -1,0 +1,19 @@
+name: GitHub Actions Workflow Hub | Producer
+
+on:
+  workflow_dispatch:
+    inputs:
+      user_input:
+          description: 'Your input goes here'
+          required: true
+
+jobs:
+  consumer:
+    uses: jacekmaciag/github_actions_workflow_hub_consumer/.github/workflows/consumer.yml@master
+    secrets: inherit
+    with:
+      producer_head_commit: ${{ inputs.producer_head_commit }}
+      producer_merge_commit: ${{ inputs.producer_merge_commit }}
+      consumer_commit: ${{ inputs.consumer_commit }}
+      user_input: ${{ inputs.user_input }}
+      # ... other inputs
