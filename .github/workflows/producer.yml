@@ -1,4 +1,4 @@
-name: GitHub Actions Workflow Hub | Producer
+name: GitHub Actions Workflow Hub | Producer Workflow
 
 on:
   workflow_dispatch:
@@ -8,12 +8,10 @@ on:
           required: true
 
 jobs:
-  consumer:
-    uses: jacekmaciag/github_actions_workflow_hub_consumer/.github/workflows/consumer.yml@master
+  producer_job:
+    name: Producer Job
+    uses: jacekmaciag/github_actions_workflow_hub/.github/workflows/hub.yml@master
     secrets: inherit
     with:
-      producer_head_commit: ${{ inputs.producer_head_commit }}
-      producer_merge_commit: ${{ inputs.producer_merge_commit }}
-      consumer_commit: ${{ inputs.consumer_commit }}
       user_input: ${{ inputs.user_input }}
       # ... other inputs
